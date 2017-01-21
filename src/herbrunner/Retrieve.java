@@ -19,7 +19,7 @@ public class Retrieve extends Task<ClientContext> {
 
     @Override
     public boolean activate(){
-        return ctx.inventory.select().id(compostID).isEmpty() && ctx.inventory.select().id(ranarrSeedID).count(true) > 1 ;
+        return ctx.inventory.select().id(compostID).isEmpty() && ctx.inventory.select().id(ranarrSeedID).count(true) >= 1 && !ctx.players.local().inMotion() ;
     }
 
     @Override

@@ -15,6 +15,7 @@ public class FaladorWalk extends Task<ClientContext> {
     private int[] herbPatchID = {8143, 8147};
     private int[] deadHerbPatch = {8147};
     private int compostID = 6034;
+    private int[] emptyPatchIDS = {8136,8132,18818};
 
     public FaladorWalk(ClientContext ctx) {
         super(ctx);
@@ -22,11 +23,14 @@ public class FaladorWalk extends Task<ClientContext> {
 
     @Override
     public boolean activate() {
-        return ctx.inventory.select().id(ranarrSeedID).count(true) == 5 && ctx.objects.select().id(herbPatchID).isEmpty();
+        return ctx.inventory.select().id(ranarrSeedID).count(true) == 5 && ctx.objects.select().id(herbPatchID).isEmpty() && ctx.objects.select().id(emptyPatchIDS).isEmpty();
     }
 
     @Override
     public void execute() {
+        if (ctx.movement.energyLevel() >= 15){
+            ctx.movement.running(true);
+        }
         System.out.println("Walking to Falador Patch...");
         LocalPath faladorPath2 = ctx.movement.findPath(new Tile(3009,3318, 0));
         if (!faladorPath2.valid()) {

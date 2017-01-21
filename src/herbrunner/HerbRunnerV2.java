@@ -29,7 +29,7 @@ public class HerbRunnerV2 extends PollingScript<ClientContext> {
     @Override
     public void poll(){
         for (Task t: taskList){
-            System.out.println("Trying");
+            System.out.println("Thinking...");
             if (t.activate() && ctx.players.local().animation() == -1){
                 t.execute();
             }

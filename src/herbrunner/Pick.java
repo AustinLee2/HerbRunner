@@ -18,7 +18,7 @@ public class Pick extends Task<ClientContext> {
 
     @Override
     public boolean activate(){
-        return !ctx.objects.select().id(herbPatchID).isEmpty() && ctx.inventory.select().id(compostID).count() == 1;
+        return !ctx.objects.select().id(herbPatchID).isEmpty() && ctx.inventory.select().id(compostID).count() == 1 && ctx.inventory.select().count() < 28;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package teleports;
 
 import herbrunner.Task;
+import org.powerbot.script.Condition;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.Component;
 
@@ -24,5 +25,8 @@ public class TrollTeleport extends Task<ClientContext> {
         spellBook.click();
         Component trollheimSpell = ctx.widgets.component(218,45);
         trollheimSpell.click();
+        Component inventory = ctx.widgets.component(548,48);
+        inventory.click();
+        Condition.sleep(1000);
     }
 }

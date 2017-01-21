@@ -17,12 +17,15 @@ public class TrollWalk extends Task<ClientContext> {
 
     @Override
     public boolean activate() {
-        return ctx.inventory.select().id(ranarrSeedID).count(true) == 3 && (ctx.objects.select().id(herbPatchID).isEmpty() || !ctx.objects.select().id(herbPatchID).nearest().poll().inViewport() || !ctx.npcs.select().name("Tool Leprechaun").poll().inViewport());
+        return ctx.inventory.select().id(ranarrSeedID).count(true) == 3 && (ctx.objects.select().id(herbPatchID).isEmpty() || (!ctx.objects.select().id(herbPatchID).nearest().poll().inViewport() || !ctx.npcs.select().name("Tool Leprechaun").poll().inViewport()));
 
     }
 
     @Override
     public void execute() {
+        if (ctx.movement.energyLevel() >= 15){
+            ctx.movement.running(true);
+        }
         System.out.println("Walking to Trollheim Patch...");
         LocalPath trollPath1 = ctx.movement.findPath(new Tile(2841,3690,0)/*2854,3684,0)*/);
         System.out.print("Trollpath1: " + trollPath1.valid());
@@ -30,6 +33,7 @@ public class TrollWalk extends Task<ClientContext> {
         GameObject entrance = ctx.objects.select().id(3771).nearest().poll();
         entrance.interact("Enter");
         GameObject ladder = ctx.objects.select().id(18834).nearest().poll();
+        ctx.camera.turnTo(ladder);
         ctx.movement.step(ladder);
         ladder.interact("Climb-up");
         LocalPath trollPath2 = ctx.movement.findPath(new Tile(2827,3687,0));

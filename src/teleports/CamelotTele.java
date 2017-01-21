@@ -25,7 +25,7 @@ public class CamelotTele extends Task<ClientContext> {
         spellBook.click();
         Component camelotSpell = ctx.widgets.component(218,27);
         camelotSpell.click();
-
-
+        Component inventory = ctx.widgets.component(548,48);
+        inventory.click();
     }
 }

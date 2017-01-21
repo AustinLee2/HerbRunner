@@ -10,10 +10,12 @@ import org.powerbot.script.rt4.GameObject;
 public class Compost extends Task<ClientContext> {
 
     private int compostID = 6034;
+    public boolean composted;
     private int[] emptyPatchIDS = {8136,8132,18818};
 
     public Compost(ClientContext ctx){
         super(ctx);
+        composted = false;
     }
 
     @Override
@@ -28,11 +30,12 @@ public class Compost extends Task<ClientContext> {
         if (emptyPatch.inViewport()){
             ctx.inventory.select().id(6034).poll().interact("Use");
             ctx.objects.select().id(emptyPatchIDS).nearest().poll().interact("Use");
+            composted = true;
         }
         else {
             ctx.camera.turnTo(emptyPatch);
             ctx.movement.step(emptyPatch);
         }
-        Condition.sleep(2000);
+        Condition.sleep(500);
     }
 }

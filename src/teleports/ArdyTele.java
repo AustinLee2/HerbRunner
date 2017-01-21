@@ -25,7 +25,7 @@ public class ArdyTele extends Task<ClientContext> {
         spellBook.click();
         Component ardySpell = ctx.widgets.component(218,33);
         ardySpell.click();
-
-
+        Component inventory = ctx.widgets.component(548,48);
+        inventory.click();
     }
 }

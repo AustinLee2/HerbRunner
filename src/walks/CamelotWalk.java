@@ -20,6 +20,9 @@ public class CamelotWalk extends Task<ClientContext> {
 
     @Override
     public void execute() {
+        if (ctx.movement.energyLevel() >= 15){
+            ctx.movement.running(true);
+        }
         System.out.println("Walking to Camelot patch...");
         LocalPath camelotPath2 = ctx.movement.findPath(new Tile(2808,3464,0));
         if (!camelotPath2.valid()) {

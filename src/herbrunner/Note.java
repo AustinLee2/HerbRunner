@@ -22,6 +22,7 @@ public class Note extends Task<ClientContext> {
 
     @Override
     public void execute() {
+        System.out.println("Nothing...");
         Npc toolLep = ctx.npcs.select().name("Tool Leprechaun").nearest().poll();
         if (toolLep.inViewport()){
             ctx.inventory.select().id(grimyRanarrID).poll().interact("Use");

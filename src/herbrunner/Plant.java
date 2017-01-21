@@ -20,7 +20,7 @@ public class Plant extends Task<ClientContext> {
     @Override
     public boolean activate() {
         return !ctx.objects.select().id(emptyPatchIDS).isEmpty()
-                && !ctx.inventory.select().id(ranarrSeedID).isEmpty();
+                && !ctx.inventory.select().id(ranarrSeedID).isEmpty() && !ctx.inventory.select().id(bucketID).isEmpty();
     }
 
     @Override

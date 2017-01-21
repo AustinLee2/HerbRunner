@@ -22,6 +22,9 @@ public class PhastyWalk extends Task<ClientContext> {
 
     @Override
     public void execute() {
+        if (ctx.movement.energyLevel() >= 15){
+            ctx.movement.running(true);
+        }
         System.out.println("Walking to Phastymays patch...");
         LocalPath phastyPath4 = ctx.movement.findPath(new Tile(3610,3532,0));
         System.out.println("PhastyPath4: " + phastyPath4.valid());
